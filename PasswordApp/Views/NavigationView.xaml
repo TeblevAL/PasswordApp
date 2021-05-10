@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="PasswordApp.Views.NavigationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PasswordApp.Views" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="5"
+                                      RenderingBias="Quality" 
+                                      ShadowDepth="1"/>
+        </Grid.Effect>
+        <Grid Grid.Column="0"
+              Background="{DynamicResource PrimaryHueDarkBrush}">
+            <Grid>
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="5"
+                                      RenderingBias="Quality" 
+                                      ShadowDepth="1"/>
+                </Grid.Effect>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" 
+                            Orientation="Vertical">
+                    <Button Margin ="5"
+                            Width="50"
+                            Height="40"
+                            Command="{Binding HomeCommand}"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                            ToolTip="Основная страница">
+
+                        <materialDesign:PackIcon Kind="Home" 
+                                                 Height="20" Width="20"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="3" 
+                            Orientation="Vertical">
+                    <Button Margin="5"
+                            Width="50"
+                            Height="40"
+                            Command="{Binding EcsportCommand}"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                            ToolTip="Экспорт данных">
+                        <materialDesign:PackIcon Kind="FileUploadOutline" 
+                                                 Height="20" Width="20" />
+                    </Button>
+                    <Button Margin="5"
+                            Width="50"
+                            Height="40" 
+                            Command="{Binding ImportCommand}"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                            ToolTip="Импорт данных">
+                        <materialDesign:PackIcon Kind="FileDownloadOutline" 
+                                                 Height="20" Width="20" />
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="5" 
+                            Orientation="Vertical">
+                    <Button Margin="5"
+                            Width="50"
+                            Height="40"
+                            Command="{Binding SettingsCommand}"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                            ToolTip="Настройки">
+                        <materialDesign:PackIcon Kind="CogOutline" 
+                                                 Height="20" Width="20" />
+                    </Button>
+                    <Button Margin="5"
+                            Width="50"
+                            Height="40"
+                            Command="{Binding ExitCommand}"
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                            ToolTip="Выход">
+                        <materialDesign:PackIcon Kind="ExitToApp" 
+                                                 Height="20" Width="20"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <ContentControl Content="{Binding SelectedViewModel}"/>
+        </Grid>
+    </Grid>
+</UserControl>

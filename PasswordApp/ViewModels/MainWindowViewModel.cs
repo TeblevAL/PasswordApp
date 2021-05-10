@@ -60,6 +60,30 @@ namespace PasswordApp.ViewModels
             window.Close();
         }
 
+        public void LoadNewKeyViewModel()
+        {
+
+            window.MinHeight = 350;
+            window.MinWidth = 550;
+
+            window.Height = 350;
+            window.Width = 550;
+
+            SelectedViewModel = new NewKeyViewModel();
+        }
+
+        public void LoadLogInViewModel()
+        {
+
+            window.MinHeight = 350;
+            window.MinWidth = 550;
+
+            window.Height = 350;
+            window.Width = 550;
+
+            SelectedViewModel = new LoginViewModel();
+        }
+
 
         #endregion
 
@@ -74,6 +98,8 @@ namespace PasswordApp.ViewModels
             MaximizedCommand = new RelayCommand(obj => Maximized());
             CloseCommand = new RelayCommand(obj => Close());
 
+            MediatorMainWindow.Subscribe("LoadNewKeyView", LoadNewKeyViewModel);
+            MediatorMainWindow.Subscribe("LoadLogInView", LoadLogInViewModel);
         }
 
         #endregion
