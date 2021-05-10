@@ -84,6 +84,21 @@ namespace PasswordApp.ViewModels
             SelectedViewModel = new LoginViewModel();
         }
 
+        public void LoadNavigationViewModel()
+        {
+
+            window.MinHeight = 600;
+            window.MinWidth = 1000;
+
+            window.Height = 800;
+            window.Width = 1200;
+
+            window.Left = 300;
+            window.Top = 150;
+
+            SelectedViewModel = new NavigationViewModel();
+        }
+
 
         #endregion
 
@@ -100,6 +115,8 @@ namespace PasswordApp.ViewModels
 
             MediatorMainWindow.Subscribe("LoadNewKeyView", LoadNewKeyViewModel);
             MediatorMainWindow.Subscribe("LoadLogInView", LoadLogInViewModel);
+            MediatorMainWindow.Subscribe("LoadNavigationView", LoadNavigationViewModel);
+
         }
 
         #endregion

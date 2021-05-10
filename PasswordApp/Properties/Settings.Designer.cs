@@ -34,5 +34,17 @@ namespace PasswordApp.Properties {
                 this["Key"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int CryptoId {
+            get {
+                return ((int)(this["CryptoId"]));
+            }
+            set {
+                this["CryptoId"] = value;
+            }
+        }
     }
 }
