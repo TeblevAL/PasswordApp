@@ -1,4 +1,5 @@
 ﻿using PasswordApp.Services.Cryptography;
+using PasswordApp.Services.DataAnnotations;
 using PasswordApp.Services.MVVMCore;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace PasswordApp.ViewModels
         #region Свойства
 
         [Required(ErrorMessage = "Не должно быть пустым")]
+        [LatinString(ErrorMessage = "Допустимы только буквы латиского алфавита,цифры и особые символы")]
         [MinLength(8, ErrorMessage = "Ключ должен состоять из 8 символов")]
         [MaxLength(8, ErrorMessage = "Ключ должен состоять из 8 символов")]
         [DataType(DataType.Password)]
