@@ -21,7 +21,12 @@
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+            <DataTemplate DataType="{x:Type viewmodels:NewKeyViewModel}">
+                <views:NewKeyView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
