@@ -1,10 +1,12 @@
-﻿using PasswordApp.Services.MVVMCore;
+﻿using PasswordApp.Services.Cryptography;
+using PasswordApp.Services.MVVMCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PasswordApp.ViewModels
@@ -45,8 +47,14 @@ namespace PasswordApp.ViewModels
 
         private void LogIn()
         {
-
-           
+            if (CryptoController.DecryptKey(Key))
+            {
+                MediatorMainWindow.Notify("LoadNavigationView");
+            }
+            else
+            {
+                MessageBox.Show("Неверный пароль");
+            }
         }
 
         #endregion

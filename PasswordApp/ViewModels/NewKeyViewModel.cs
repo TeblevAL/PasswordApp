@@ -1,4 +1,5 @@
-﻿using PasswordApp.Services.MVVMCore;
+﻿using PasswordApp.Services.Cryptography;
+using PasswordApp.Services.MVVMCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -59,6 +60,8 @@ namespace PasswordApp.ViewModels
 
         private void AddKey()
         {
+            CryptoController.AddKey(NewKey); ;
+            MediatorMainWindow.Notify("LoadNavigationView");
         }
 
         #endregion

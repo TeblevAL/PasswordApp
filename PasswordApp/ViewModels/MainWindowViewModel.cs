@@ -1,4 +1,5 @@
-﻿using PasswordApp.Services.MVVMCore;
+﻿using PasswordApp.Services.Cryptography;
+using PasswordApp.Services.MVVMCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +117,15 @@ namespace PasswordApp.ViewModels
             MediatorMainWindow.Subscribe("LoadNewKeyView", LoadNewKeyViewModel);
             MediatorMainWindow.Subscribe("LoadLogInView", LoadLogInViewModel);
             MediatorMainWindow.Subscribe("LoadNavigationView", LoadNavigationViewModel);
+
+            if (CryptoController.CheckKey())
+            {
+                MediatorMainWindow.Notify("LoadLogInView");
+            }
+            else
+            {
+                MediatorMainWindow.Notify("LoadNewKeyView");
+            }
 
         }
 
