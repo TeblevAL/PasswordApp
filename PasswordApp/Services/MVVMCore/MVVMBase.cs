@@ -5,11 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PasswordApp.Services.MVVMCore
 {
+    [DataContract]
     public class MVVMBase : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Реализация интерфейса IDataErrorInfo

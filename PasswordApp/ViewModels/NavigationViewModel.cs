@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PasswordApp.ViewModels
@@ -66,7 +67,16 @@ namespace PasswordApp.ViewModels
                     {
                         ecsportList.Add(new Account { SiteName = account.SiteName, Login = account.Login, Password = account.Password, Url = account.Url });
                     }
-                    CryptoController.Current.Algorithm.EncryptFile(saveFileDialog.FileName, ecsportList, keyDialog.Key);
+                    try
+                    {
+                        CryptoController.Current.Algorithm.EncryptFile(saveFileDialog.FileName, ecsportList, keyDialog.Key);
+                        MessageBox.Show("Файл успешно сохранен");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось сохранить файл");
+                    }
+                    
                 }
             }
         }
@@ -81,26 +91,33 @@ namespace PasswordApp.ViewModels
                 KeyDialog keyDialog = new KeyDialog("Введите ключ для расшифровки файла");
                 if (keyDialog.ShowDialog() == true)
                 {
-                    List<Account> importList = CryptoController.Current.Algorithm.DecryptFile<Account>(openFileDialog.FileName, keyDialog.Key);
-                    Category category = ModelsController.Categories.Where(ob => ob.Name == "[Импортированные]").FirstOrDefault();
-                    if (category != null)
+                    try
                     {
-                        foreach (var account in importList)
+                        List<Account> importList = CryptoController.Current.Algorithm.DecryptFile<Account>(openFileDialog.FileName, keyDialog.Key);
+                        Category category = ModelsController.Categories.Where(ob => ob.Name == "[Импортированные]").FirstOrDefault();
+                        if (category != null)
                         {
-                            account.IdCategory = category.Id;
-                            ModelsController.AddAccount(account);
-                        }
+                            foreach (var account in importList)
+                            {
+                                account.IdCategory = category.Id;
+                                ModelsController.AddAccount(account);
+                            }
 
-                    }
-                    else
-                    {
-                        ModelsController.AddCategory(new Category { Name = "[Импортированные]" });
-                        Category newCategory = ModelsController.Categories.Where(ob => ob.Name == "[Импортированные]").FirstOrDefault();
-                        foreach (var account in importList)
-                        {
-                            account.IdCategory = newCategory.Id;
-                            ModelsController.AddAccount(account);
                         }
+                        else
+                        {
+                            ModelsController.AddCategory(new Category { Name = "[Импортированные]" });
+                            Category newCategory = ModelsController.Categories.Where(ob => ob.Name == "[Импортированные]").FirstOrDefault();
+                            foreach (var account in importList)
+                            {
+                                account.IdCategory = newCategory.Id;
+                                ModelsController.AddAccount(account);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Введён не правильный ключ");
                     }
                 }
             }

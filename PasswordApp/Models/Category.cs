@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PasswordApp.Models
 {
+    [KnownType(typeof(MVVMBase))]
+    [DataContract]
     public class Category : MVVMBase
     {
         #region Приватные поля
@@ -20,8 +23,10 @@ namespace PasswordApp.Models
 
         #region Публичные свойства
 
+        [DataMember]
         public int Id { get; set; }
 
+        [DataMember]
         [Required(ErrorMessage = "Необходимо название категории")]
         public string Name
         {
@@ -33,6 +38,7 @@ namespace PasswordApp.Models
             }
         }
 
+        [DataMember]
         public virtual ObservableCollection<Account> Accounts
         {
             get { return accounts; }

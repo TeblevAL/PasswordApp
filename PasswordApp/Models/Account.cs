@@ -1,13 +1,17 @@
-﻿using PasswordApp.Services.MVVMCore;
+﻿using PasswordApp.Services.DataAnnotations;
+using PasswordApp.Services.MVVMCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PasswordApp.Models
 {
+    [KnownType(typeof(MVVMBase))]
+    [DataContract]
     public class Account : MVVMBase
     {
         #region Приватные поля
@@ -25,6 +29,7 @@ namespace PasswordApp.Models
 
         public int Id { get; set; }
 
+        [DataMember]
         [Required(ErrorMessage = "Введите название сайта/платформы")]
         public string SiteName
         {
@@ -36,6 +41,7 @@ namespace PasswordApp.Models
             }
         }
 
+        [DataMember]
         public string Login
         {
             get { return login; }
@@ -46,6 +52,7 @@ namespace PasswordApp.Models
             }
         }
 
+        [DataMember]
         [Required(ErrorMessage = "Необходим пароль")]
         public string Password
         {
@@ -58,6 +65,8 @@ namespace PasswordApp.Models
             }
         }
 
+        [DataMember]
+        [UrlString(ErrorMessage = "Введите коректный URL адрес")]
         public string Url
         {
             get { return url; }

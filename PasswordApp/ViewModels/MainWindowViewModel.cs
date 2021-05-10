@@ -1,5 +1,7 @@
-﻿using PasswordApp.Services.Cryptography;
+﻿using PasswordApp.Models;
+using PasswordApp.Services.Cryptography;
 using PasswordApp.Services.MVVMCore;
+using PasswordApp.Services.Visuality;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,6 +109,9 @@ namespace PasswordApp.ViewModels
 
         public MainWindowViewModel(Window window)
         {
+            VisualController.StartUp();
+            CryptoController.StartUp();
+            ModelsController.StartUp();
 
             this.window = window;
 
