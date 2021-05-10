@@ -1,12 +1,14 @@
-﻿using System;
+﻿using PasswordApp.Services.MVVMCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PasswordApp.Models
 {
-    public class Account
+    public class Account : MVVMBase
     {
         #region Приватные поля
 
@@ -23,12 +25,14 @@ namespace PasswordApp.Models
 
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Введите название сайта/платформы")]
         public string SiteName
         {
             get { return siteName; }
             set
             {
                 siteName = value;
+                OnPropertyChanged("SiteName");
             }
         }
 
@@ -38,9 +42,11 @@ namespace PasswordApp.Models
             set
             {
                 login = value;
+                OnPropertyChanged("Login");
             }
         }
 
+        [Required(ErrorMessage = "Необходим пароль")]
         public string Password
         {
             get { return password; }
@@ -48,7 +54,7 @@ namespace PasswordApp.Models
             {
 
                 password = value;
-
+                OnPropertyChanged("Password");
             }
         }
 
@@ -58,16 +64,18 @@ namespace PasswordApp.Models
             set
             {
                 url = value;
+                OnPropertyChanged("Url");
             }
         }
 
+        [Range(1, int.MaxValue, ErrorMessage = "Выберете категорию")]
         public int IdCategory
         {
             get { return idCategory; }
             set
             {
                 idCategory = value;
-
+                OnPropertyChanged("IdCategory");
             }
         }
 
@@ -77,6 +85,7 @@ namespace PasswordApp.Models
             set
             {
                 category = value;
+                OnPropertyChanged("Category");
             }
         }
 

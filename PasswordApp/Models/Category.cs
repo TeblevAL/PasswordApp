@@ -1,13 +1,15 @@
-﻿using System;
+﻿using PasswordApp.Services.MVVMCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PasswordApp.Models
 {
-    public class Category
+    public class Category : MVVMBase
     {
         #region Приватные поля
 
@@ -20,12 +22,14 @@ namespace PasswordApp.Models
 
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Необходимо название категории")]
         public string Name
         {
             get { return name; }
             set
             {
                 name = value;
+                OnPropertyChanged("Name");
             }
         }
 
@@ -35,6 +39,7 @@ namespace PasswordApp.Models
             set
             {
                 accounts = value;
+                OnPropertyChanged("Accounts");
             }
         }
 
