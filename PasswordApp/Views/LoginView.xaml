@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="PasswordApp.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PasswordApp.Views"
+             xmlns:w="clr-namespace:PasswordApp.Services.BindingHelpers" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" 
+             Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
+        <Border BorderThickness="2" 
+                Padding="15" 
+                CornerRadius="10" 
+                Width="470" Height="270" 
+                BorderBrush="{DynamicResource PrimaryHueDarkBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="AlphaPBoxOutline" 
+                                             Width="90" Height="90"
+                                             Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Text="Введите ключ"
+                               Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <PasswordBox Grid.Column="1"
+                                 Margin="10"
+                                 FontSize="16"
+                                 VerticalAlignment="Center"
+                                 w:PasswordHelper.Attach="True" 
+                                 w:PasswordHelper.Password="{Binding Key, Mode=TwoWay, 
+                                                            UpdateSourceTrigger=PropertyChanged,
+                                                            ValidatesOnDataErrors=True}"
+                                 Foreground="{DynamicResource MaterialDesignBody}"/>
+                </Grid>
+                <Grid Grid.Row="2"
+                      HorizontalAlignment="Center">
+                    <Button Command="{Binding LogInCommand}"
+                            Content="Войти"
+                            Background="{DynamicResource PrimaryHueDarkBrush}"
+                            Foreground="{DynamicResource MaterialDesignBody}"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
