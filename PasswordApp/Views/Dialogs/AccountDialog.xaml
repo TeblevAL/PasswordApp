@@ -1,0 +1,131 @@
+﻿<Window x:Class="PasswordApp.Views.Dialogs.AccountDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PasswordApp.Views.Dialogs"
+        xmlns:w="clr-namespace:PasswordApp.Services.BindingHelpers"
+        mc:Ignorable="d"
+        Height="350" Width="400" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Background="{DynamicResource PrimaryHueDarkBrush}">
+        <Grid Margin="5" 
+              Background="{DynamicResource MaterialDesignPaper}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#region Заголовок -->
+            <Grid Background="{DynamicResource PrimaryHueDarkBrush}">
+                <TextBlock Grid.Row="0"
+                           FontSize="18"
+                           TextAlignment="Left"
+                           Text="{Binding TitleHeader}"
+                           Foreground="{DynamicResource MaterialDesignBody}"/>
+            </Grid>
+            <!--#endregion-->
+            <!--#region Поля -->
+            <StackPanel Grid.Row="1" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10"
+                               Width="120"
+                               VerticalAlignment="Center"
+                               Text="Название сайта"
+                               Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <TextBox Margin="10"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             Text="{Binding Account.SiteName, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    ValidatesOnDataErrors=True}"
+                             Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10" 
+                               Width="120"
+                               VerticalAlignment="Center"
+                               Text="Логин"
+                               Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <TextBox Margin="10"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             Text="{Binding Account.Login,
+                                   UpdateSourceTrigger=PropertyChanged,
+                                   ValidatesOnDataErrors=True}"
+                             Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10"
+                               Width="120"
+                               VerticalAlignment="Center"
+                               Text="Пароль"
+                               Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <PasswordBox Margin="10" 
+                                 Width="150"
+                                 VerticalAlignment="Center"
+                                 w:PasswordHelper.Attach="True"
+                                 w:PasswordHelper.Password="{Binding Account.Password,
+                                                            Mode=TwoWay,
+                                                            UpdateSourceTrigger=PropertyChanged,
+                                                            ValidatesOnDataErrors=True}"
+                                 Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10"
+                               Width="120"
+                               VerticalAlignment="Center"
+                               Text="URL"
+                               Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <TextBox Margin="10"
+                             Width="150"
+                             VerticalAlignment="Center"
+                             Text="{Binding Account.Url,
+                                   UpdateSourceTrigger=PropertyChanged,
+                                   ValidatesOnDataErrors=True}"
+                             Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10"
+                               Width="120"
+                               VerticalAlignment="Center"
+                               Text="Категория"
+                               Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <ComboBox Margin="10" 
+                              Width="150"
+                              VerticalAlignment="Center"
+                              DisplayMemberPath="Name" 
+                              SelectedValuePath="Id" 
+                              SelectedValue="{Binding IdCategory,Mode=TwoWay,
+                                             UpdateSourceTrigger=PropertyChanged,
+                                             ValidatesOnDataErrors=True}"
+                              ItemsSource="{Binding Categories,
+                                           UpdateSourceTrigger=PropertyChanged,
+                                           ValidatesOnDataErrors=True}"
+                              Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
+                <StackPanel Margin="0 20 0 0"
+                            Orientation="Horizontal">
+                    <Button Margin="10 0 20 0"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            IsDefault="True" 
+                            Command="{Binding EnterAccountCommand}" 
+                            Content="{Binding WhatDo}"
+                            Background="{DynamicResource PrimaryHueDarkBrush}"
+                            Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <Button Margin="30 0 0 0"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            IsCancel="True" 
+                            Content="Отмена"
+                            Background="{DynamicResource PrimaryHueDarkBrush}"
+                            Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+    </Grid>
+</Window>
