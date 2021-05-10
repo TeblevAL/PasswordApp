@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:PasswordApp"
              xmlns:views="clr-namespace:PasswordApp.Views"
              xmlns:viewmodels="clr-namespace:PasswordApp.ViewModels"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             Exit="ApplicationExit">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,6 +30,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:NavigationViewModel}">
                 <views:NavigationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+                <views:SettingsView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

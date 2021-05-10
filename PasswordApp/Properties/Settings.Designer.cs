@@ -46,5 +46,29 @@ namespace PasswordApp.Properties {
                 this["CryptoId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ThemeId {
+            get {
+                return ((int)(this["ThemeId"]));
+            }
+            set {
+                this["ThemeId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ColorId {
+            get {
+                return ((int)(this["ColorId"]));
+            }
+            set {
+                this["ColorId"] = value;
+            }
+        }
     }
 }
